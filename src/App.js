@@ -5,12 +5,14 @@ import Manage from './Components/Manage/Manage';
 import Review from './Components/Review/Review';
 import Shop from './Components/Shop/Shop';
 import NotFound from './Components/NotFound/NotFound';
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link
 } from "react-router-dom";
+import ProductDetails from './Components/ProductDetails/ProductDetails';
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
         <Route path="/shop" element={<Shop/>} />
         <Route path="/review" element={<Review />} />
         <Route path="/manage" element={<Manage />} />
+        <Route path="/product/:productKey" element={<ProductDetails/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
