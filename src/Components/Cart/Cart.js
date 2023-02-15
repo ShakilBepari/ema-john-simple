@@ -26,14 +26,15 @@ const Cart = (props) => {
         const precision = num.toFixed(2);
         return Number(precision);
     }
+    const newFormatNumber = formatNumber(tax)
     return (
         <div>
             <h4>Order Summary</h4>
             <p>Items Ordered: {cart.length}</p>
-            <p>Product Price: {total}</p>
-            <p><small>Shipping Cost: {shipping}</small></p>
-            <p><small>Tax+Vat: {formatNumber(tax)}</small></p>
-            <p>Total Price: {total+shipping}</p>
+            <p>Product Price: ${total.toFixed(2)}</p>
+            <p><small>Shipping Cost: ${shipping}</small></p>
+            <p><small>Tax+Vat: ${newFormatNumber}</small></p>
+            <p>Total Price: ${(total+shipping+newFormatNumber).toFixed(2)}</p>
         </div>
     );
 };
