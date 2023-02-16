@@ -1,10 +1,10 @@
 const getUser = () => {
-    const existingUser = localStorage.getItem('userId');
+    const existingUser = sessionStorage.getItem('userId');
     if (existingUser) {
         return existingUser; 
     } else {
         const newUser = 'user-' + new Date().getTime();
-        localStorage.setItem('userId', newUser)
+        sessionStorage.setItem('userId', newUser)
         return newUser;
     }
 }
