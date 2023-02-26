@@ -1,20 +1,25 @@
-import React, { useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import fakeData from '../../fakeData';
 import { getDatabaseCart, removeFromDatabaseCart, clearLocalShoppingCart } from '../../utilities/databaseManager';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import happyImage from '../../images/giphy.gif';
+import { userContext } from '../../App';
+
+
 const Review = () => {
 
     const [cart,setCart] = useState([]);
     const [orderPlaced,setOrderPlaced] = useState(false);
+    const navigate = useNavigate();
+    const [loggedIn, setLoggedIn, xxx, setXxx] = useContext(userContext);
 
+    const proccedCheckout = () =>{
+        
+    navigate("/shipment");    
+    setXxx('shipment');
 
-    const handlePlaceOrder = () =>{
-        setCart([]);
-        setOrderPlaced(true);
-        clearLocalShoppingCart();
     }
 
     useEffect(() => {
@@ -51,7 +56,7 @@ const Review = () => {
             </div>
             <div className='cart-container'>
                 <Cart cart={cart}>
-                <Link to='/review'><button className='main-button' onClick={handlePlaceOrder}>Place Order</button></Link>
+                <button className='main-button' onClick={proccedCheckout}>Procced Checkout</button>
                 </Cart>
             </div>
         </div>

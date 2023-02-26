@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { userContext } from '../../App';
 import logo from '../../images/logo.png';
 import './Header.css'
 const Header = () => {
+    const [loggedIn, setLoggedIn, xxx, setXxx] = useContext(userContext);
+   const  pornHub =()=>{
+    setXxx('manage');
+   }
     return (
         <div className='header'>
             <img src={logo} alt=''/>
@@ -13,7 +18,7 @@ const Header = () => {
                  */}
                 <Link to='/shop'>Shop</Link>
                 <Link to='/review'>Order Review</Link>
-                <Link to='/manage'>Manage Inventory</Link>
+                <Link to='/manage' onClick={pornHub}>Manage Inventory</Link>
 
             </nav>
         </div>

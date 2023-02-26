@@ -3,12 +3,14 @@ import React from 'react';
 
 const Cart = (props) => {
     const cart = props.cart
-    let total = 0;
+    // let total = 0;
     
-    for(let i = 0; i<cart.length; i++){
-        const product = cart[i];
-        total = total + product.price * product.quantity;       
-    }
+    // for(let i = 0; i<cart.length; i++){
+    //     const product = cart[i];
+    //     total = total + product.price * product.quantity;       
+    // }
+
+    const total  = cart.reduce((total,num)=> total + num.price * num.quantity, 0);
 
     let shipping = 0;
 
