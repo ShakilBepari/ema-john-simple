@@ -1,4 +1,3 @@
-
 import * as firebase from 'firebase/app';
 import {createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth";
 import firebaseConfig from './firebase.config';
@@ -20,11 +19,11 @@ function Login() {
   const navigate = useNavigate();
   const calls = xxx;
 
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
   const fbProvider = new FacebookAuthProvider();
   const auth = getAuth();
-  const handleSignIn= () => {
-    signInWithPopup(auth, provider)
+  const googleSignIn= () => {
+    signInWithPopup(auth, googleProvider)
     .then(res => {
       const {displayName,email,photoURL} = res.user;
       const signedInUser = {
@@ -34,11 +33,13 @@ function Login() {
         photo:photoURL
       }
       setUser(signedInUser);
+      setLogedInUser(signedInUser);
+      navigate(`/${xxx}`);
       console.log(displayName,email,photoURL);
     })
   }
   
-const handleSignOut = () => {
+const signOut = () => {
   signOut(auth)
   .then( res => {
     const signedOutUser = {
@@ -133,30 +134,17 @@ const updateUserName = (user) => {
   });
 } 
 
-const handleFbSignIn = () => {
+const fbSignIn = () => {
   const auth = getAuth();
   signInWithPopup(auth, fbProvider)
   .then((result) => {
-    // The signed-in user info.
     const user = result.user;
-
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-
     console.log('hello');
-
-
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
   })
   .catch((error) => {
-    // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
-
-    // The AuthCredential type that was used.
     console.log(errorCode,errorMessage);
-    // ...
   });
 };
 
@@ -164,12 +152,12 @@ const handleFbSignIn = () => {
   return (
     <div style={{textAlign:'center'}}>
       {
-         user.isSignedIn ?   <button onClick={handleSignOut}>Sign Out</button> : <button onClick={handleSignIn}>Sign In</button>
+         user.isSignedIn ?   <button onClick={signOut}>Sign Out</button> : <button onClick={googleSignIn}>Sign In With Gogle</button>
       }
 
       <br/>
 
-      <button onClick={handleFbSignIn}>Sign Up With Facebook</button>
+      <button onClick={fbSignIn}>Sign in With Facebook</button>
      
       {
         user.isSignedIn && <div>

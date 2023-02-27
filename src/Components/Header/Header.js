@@ -19,7 +19,7 @@ const Header = () => {
                 <Link to='/shop'>Shop</Link>
                 <Link to='/review'>Order Review</Link>
                 <Link to='/manage' onClick={pornHub}>Manage Inventory</Link>
-
+                <button onClick={()=> setLoggedIn({})}>Sign Out</button>
             </nav>
         </div>
     );
